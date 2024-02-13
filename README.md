@@ -5,7 +5,7 @@ For running webproject
 
 $ sudo docker pull smitwaman/task-management-system:v1
 
-$ sudo docker run -d -p 8080:80 task-management-system         
+$ sudo docker run -d -p 8080:80 task-management-system:v1         
 
 // you can use any free port instead of 8080
 
