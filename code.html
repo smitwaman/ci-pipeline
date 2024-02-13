@@ -1,1 +1,84 @@
-c
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Management System</h1>
+    
+    <form id="taskForm">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="taskName" required><br><br>
+        
+        <label for="taskAssigned">Task Assigned:</label>
+        <input type="text" id="taskAssigned" name="taskAssigned" required><br><br>
+        
+        <label for="assignedDate">Assigned Date:</label>
+        <input type="date" id="assignedDate" name="assignedDate" required><br><br>
+        
+        <label for="completionDate">Completion Date:</label>
+        <input type="date" id="completionDate" name="completionDate"><br><br>
+        
+        <button type="button" onclick="addTask()">Add Task</button>
+    </form>
+    
+    <h2>Task List</h2>
+    <table id="taskTable">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Task Assigned</th>
+                <th>Assigned Date</th>
+                <th>Completion Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Task list will be dynamically populated here -->
+        </tbody>
+    </table>
+    
+    <script>
+        function addTask() {
+            // Get form values
+            var taskName = document.getElementById("taskName").value;
+            var taskAssigned = document.getElementById("taskAssigned").value;
+            var assignedDate = document.getElementById("assignedDate").value;
+            var completionDate = document.getElementById("completionDate").value;
+            
+            // Create new row for task
+            var table = document.getElementById("taskTable").getElementsByTagName('tbody')[0];
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            
+            // Populate row with task details
+            cell1.innerHTML = taskName;
+            cell2.innerHTML = taskAssigned;
+            cell3.innerHTML = assignedDate;
+            cell4.innerHTML = completionDate || "N/A";
+            
+            // Clear form inputs
+            document.getElementById("taskForm").reset();
+        }
+    </script>
+</body>
+</html>
+
