@@ -5,7 +5,7 @@ pipeline {
     tools {
         
   jdk 'jdk'
-  git 'Default'
+  git 'git'
   maven 'maven'
   dockerTool 'docker'
     }
