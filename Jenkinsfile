@@ -12,7 +12,7 @@ pipeline {
         stage('scm') {
             steps {
                 // Clone your HTML project from version control
-                git 'https://github.com/smitwaman/task-management-system.git'
+                git branch: 'main', url: 'https://github.com/smitwaman/task-management-system.git'
 
                 // You might have additional build steps here if needed
             }
