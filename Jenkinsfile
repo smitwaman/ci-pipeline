@@ -15,8 +15,7 @@ pipeline {
         DOCKER_HUB_USERNAME = 'smitwaman' // Your Docker Hub username
         DOCKER_HUB_REPOSITORY = 'smitwaman/webapp' // Your Docker Hub repository name
         DOCKER_IMAGE_TAG = 'latest' // Tag for the Docker image
-        DOCKER_PAT = credentials('docker') // Jenkins credential ID for Docker Hub Personal Access Token (PAT)
-    }
+       
 
     stages {
         stage('Checkout') {
@@ -41,7 +40,7 @@ pipeline {
                 script {
                     // Login to Docker Hub using Personal Access Token
                     withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_LOGIN_TOKEN')]) {
-                        sh "sudo docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
+                        sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
                     }
 
                     // Push Docker image to Docker Hub
