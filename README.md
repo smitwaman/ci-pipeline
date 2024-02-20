@@ -1,3 +1,14 @@
+# Continuous Integration Pipeline 
+ This is project simple-pipeline for continuous integration using 
+ 1. github webhook and git as a scm.
+ 2. Jenkins for configure tools and script generate.
+ 3. Docker is for dockerize code and push it to dockerhub.
+
+Any commit in scm will make webhook to trigger pipeline.
+
+
+
+
 # task-management-system
 It is simple html program for task-management-system having fields as task, assignee, time.
 
