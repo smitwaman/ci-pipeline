@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_CREDENTIALS = credentials('docker') // Jenkins credentials ID for Docker Hub
         DOCKER_IMAGE_NAME = 'smitwaman/webapp' // Docker Hub repository name
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // Tagging the Docker image with the Jenkins build number
-        SONAR_TOKEN = credentials('sonar')
+        
     }
 
     stages {
@@ -26,13 +26,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "mvn sonar:sonar -Dsonar.login=${env.SONAR_TOKEN}"
-                }
-            }
-        }
+        
 
         stage('Build Docker Image') {
             steps {
