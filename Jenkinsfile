@@ -41,7 +41,7 @@ pipeline {
                 script {
                     // Login to Docker Hub using Personal Access Token
                     withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_LOGIN_TOKEN')]) {
-                        sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
+                        sh "sudo docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
                     }
 
                     // Push Docker image to Docker Hub
