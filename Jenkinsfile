@@ -31,7 +31,7 @@ pipeline {
         }
 
 
-    stages {
+    
         stage('Start Docker Daemon') {
             steps {
                 script {
