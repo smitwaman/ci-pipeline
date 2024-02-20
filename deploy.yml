@@ -16,7 +16,7 @@ spec:
         - name: webapp
           image: smitwaman/webapp:latest
           ports:
-            - containerPort: 8082
+            - containerPort: 8083
 ---
 apiVersion: v1
 kind: Service
@@ -28,6 +28,6 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8082
+      targetPort: 8083
   type: LoadBalancer
 
