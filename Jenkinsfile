@@ -38,7 +38,7 @@ pipeline {
             steps {
                 // Build Docker image with Dockerfile
                 script {
-                    sh 'sudo docker build -t smitwaman/webapp:10 .'
+                    sh 'docker build -t smitwaman/webapp:10 .'
                     }
             }
         }
