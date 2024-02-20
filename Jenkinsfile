@@ -35,7 +35,7 @@ pipeline {
         stage('Start Docker Daemon') {
             steps {
                 script {
-                    sh 'sudo service docker start'
+                    sh 'service docker start'
                 }  
             }
         }
