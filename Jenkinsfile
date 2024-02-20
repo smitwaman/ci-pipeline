@@ -11,51 +11,50 @@ pipeline {
     
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('github') // Jenkins credentials ID for Docker Hub
-        DOCKER_IMAGE_NAME = 'smitwaman/webapp' // Docker Hub repository name
-        DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}" // Tagging the Docker image with the Jenkins build number
-        
+        DOCKER_HUB_REGISTRY = 'docker.io' // Docker Hub registry URL
+        DOCKER_HUB_USERNAME = 'smitwaman' // Your Docker Hub username
+        DOCKER_HUB_REPOSITORY = 'smitwaman/webapp' // Your Docker Hub repository name
+        DOCKER_IMAGE_TAG = 'latest' // Tag for the Docker image
+        DOCKER_PAT = credentials('docker') // Jenkins credential ID for Docker Hub Personal Access Token (PAT)
     }
 
-    
-
-    stages{
-        stage('scm') {
+    stages {
+        stage('Checkout') {
             steps {
-                // Clone your HTML project from version control
-                git branch: 'main', url: 'https://github.com/smitwaman/task-management-system.git'
-
-                // You might have additional build steps here if needed
+                checkout scm
             }
         }
 
-
-    
-    
-        
+        stage('Build') {
+            steps {
+                script {
+                    // Build Maven project
+                    sh 'mvn clean install'
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
-                // Build Docker image with Dockerfile
                 script {
-                    sh 'docker build -t smitwaman/webapp:10 .'
-                    }
+                    // Build Docker image
+                    sh "docker build -t ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}:${DOCKER_IMAGE_TAG} ."
+                }
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                // Log in to Docker Hub
                 script {
-                    withCredentials([string(credentialsId: 'github')]) {
-                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                            // Push Docker image to Docker Hub
-                            docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}").push()
-                        }
+                    // Login to Docker Hub using Personal Access Token
+                    withCredentials([string(credentialsId: 'dockerhub-pat', variable: 'DOCKER_LOGIN_TOKEN')]) {
+                        sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
                     }
+
+                    // Push Docker image to Docker Hub
+                    sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}:${DOCKER_IMAGE_TAG}"
                 }
             }
         }
     }
 }
-
