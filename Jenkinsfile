@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-  jdk 'jdk'
+  
   git 'Default'
   maven 'maven'
   dockerTool 'docker'
