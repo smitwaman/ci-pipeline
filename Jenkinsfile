@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Build Maven project
-                    sh 'mvn clean install'
+                    sh 'mvn -X clean install'
                 }
             }
         }
