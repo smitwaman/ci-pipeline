@@ -38,8 +38,8 @@ pipeline {
             steps {
                 // Build Docker image with Dockerfile
                 script {
-                    docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
-                }
+                    sh 'sudo docker build -t smitwaman/webapp:10 .'
+                    }
             }
         }
 
