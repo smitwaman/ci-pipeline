@@ -20,7 +20,7 @@ pipeline {
 
     
 
-    
+    stages{
         stage('scm') {
             steps {
                 // Clone your HTML project from version control
