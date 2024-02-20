@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smitwaman/webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yourapp
+  template:
+    metadata:
+      labels:
+        app: yourapp
+    spec:
+      containers:
+        - name: yourapp
+          image: smitwaman/webapp:10
+          ports:
+            - containerPort: 3000apiVersion: v1
+kind: Service
+metadata:
+  name: yourapp
+spec:
+  selector:
+    app: yourapp
+  ports:
+    - port: 80
+      targetPort: 3000
+
+---
+
+
