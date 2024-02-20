@@ -6,6 +6,8 @@
 
 Any commit in scm will make webhook to trigger pipeline.
 
+Github-Git-Jenkins-Maven-Docker-Dockerhub
+
 
 
 
