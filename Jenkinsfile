@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub using Personal Access Token
-                    withCredentials([string(credentialsId: 'dockerhub-pat', variable: 'DOCKER_LOGIN_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_LOGIN_TOKEN')]) {
                         sh "docker login -u ${env.DOCKER_HUB_USERNAME} -p ${env.DOCKER_LOGIN_TOKEN} ${env.DOCKER_HUB_REGISTRY}"
                     }
 
