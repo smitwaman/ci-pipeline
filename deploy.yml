@@ -4,6 +4,7 @@ metadata:
   name: webapp
 spec:
   replicas: 3
+  namespace: ci
   selector:
     matchLabels:
       app: webapp
@@ -23,6 +24,7 @@ kind: Service
 metadata:
   name: webapp
 spec:
+  namespace: ci
   selector:
     app: webapp
   ports:
