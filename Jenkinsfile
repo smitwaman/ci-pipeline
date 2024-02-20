@@ -30,6 +30,15 @@ pipeline {
             }
         }
 
+
+    stages {
+        stage('Start Docker Daemon') {
+            steps {
+                script {
+                    sh 'sudo service docker start'
+                }  
+            }
+        }
         
 
         stage('Build Docker Image') {
