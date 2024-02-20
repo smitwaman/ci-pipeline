@@ -35,8 +35,9 @@ pipeline {
         stage('Start Docker Daemon') {
             steps {
                 script {
-                    
+                    sh 'apt install systemctl'
                     sh 'systemctl start docker'
+                    
                 }  
             }
         }
