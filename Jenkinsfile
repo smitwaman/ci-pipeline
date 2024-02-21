@@ -48,8 +48,8 @@ pipeline {
                     // Push Docker image to Docker Hub
                     sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}:${DOCKER_IMAGE_TAG}"
                 }
-
-                
+            }
+        }   
         
         stage('Commit and Push to Git Repo') {
             steps {
@@ -66,7 +66,7 @@ pipeline {
                 sh 'argocd app sync ${DOCKER_IMAGE} --namespace default'
             }
          }
-     }
+     
   }     
 }    
 
