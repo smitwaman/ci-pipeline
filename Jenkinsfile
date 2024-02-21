@@ -7,7 +7,7 @@ pipeline {
   jdk 'jdk'
   maven 'maven'
   dockerTool 'docker'
-  argocd 'argocd'
+  
     }
     
 
@@ -53,14 +53,14 @@ pipeline {
         stage('Create Deployment File') {
             steps {
                 // Generate or modify your deployment YAML file with the new Docker image tag
-                //sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yaml
+                //sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yml
             }
         }
         
         stage('Commit and Push to Git Repo') {
             steps {
                 // Commit and push the modified deployment file to your Git repository
-                sh 'git add deploy.yaml'
+                sh 'git add deploy.yml'
                 sh 'git commit -m "Update deployment.yaml with new image tag"'
                 sh 'git push origin main' // Assuming your branch is master
             }
