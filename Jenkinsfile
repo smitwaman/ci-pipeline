@@ -14,7 +14,8 @@ pipeline {
         DOCKER_HUB_REGISTRY = 'docker.io' // Docker Hub registry URL
         DOCKER_HUB_USERNAME = 'smitwaman' // Your Docker Hub username
         DOCKER_HUB_REPOSITORY = 'webapp' // Your Docker Hub repository name
-        DOCKER_IMAGE_TAG = 'latest' // Tag for the Docker image
+        DOCKER_IMAGE_TAG = 'env.BUILD_TAG' // Tag for the Docker image
+        DOCKER_IMAGE = 'webapp'
        }
 
     stages {
@@ -46,7 +47,42 @@ pipeline {
                     // Push Docker image to Docker Hub
                     sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}:${DOCKER_IMAGE_TAG}"
                 }
+
+                
+        stage('Create Deployment File') {
+            steps {
+                // Generate or modify your deployment YAML file with the new Docker image tag
+                sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yaml
+            }
+        }
+        
+        stage('Commit and Push to Git Repo') {
+            steps {
+                // Commit and push the modified deployment file to your Git repository
+                sh 'git add deploy.yaml'
+                sh 'git commit -m "Update deployment.yaml with new image tag"'
+                sh 'git push origin main' // Assuming your branch is master
+            }
+        }
+        
+        stage('Deploy to ArgoCD') {
+            steps {
+                // Use ArgoCD CLI or API to trigger the deployment
+                sh 'argocd app sync <application-name> --namespace <namespace>'
             }
         }
     }
 }
+
+
+
+
+                
+            }
+
+
+
+            
+        }
+    
+
