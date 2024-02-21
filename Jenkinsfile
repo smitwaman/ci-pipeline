@@ -50,12 +50,6 @@ pipeline {
                 }
 
                 
-        stage('Create Deployment File') {
-            steps {
-                // Generate or modify your deployment YAML file with the new Docker image tag
-                //sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yml
-            }
-        }
         
         stage('Commit and Push to Git Repo') {
             steps {
