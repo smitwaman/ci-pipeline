@@ -54,6 +54,8 @@ pipeline {
         stage('Commit and Push to Git Repo') {
             steps {
                 // Commit and push the modified deployment file to your Git repository
+                sh 'git config --global user.email "smitwaman007@gmail.com"'
+                sh   'git config --global user.name "smitwaman"'
                 sh 'git add deploy.yml'
                 sh 'git commit -m "Update deployment.yaml with new image tag"'
                 sh 'git push origin main' // Assuming your branch is master
