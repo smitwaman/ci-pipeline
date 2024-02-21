@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: smitwaman/webapp:latest
+          image: smitwaman/webapp:${DOCKER_IMAGE_TAG}
           ports:
             - containerPort: 8080
 ---
