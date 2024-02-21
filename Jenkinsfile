@@ -7,6 +7,7 @@ pipeline {
   jdk 'jdk'
   maven 'maven'
   dockerTool 'docker'
+  argocd 'argocd'
     }
     
 
@@ -52,7 +53,7 @@ pipeline {
         stage('Create Deployment File') {
             steps {
                 // Generate or modify your deployment YAML file with the new Docker image tag
-                sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yaml
+                //sed -i 's|{{IMAGE_NAME}}|${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}|g' deploy.yaml
             }
         }
         
@@ -68,21 +69,12 @@ pipeline {
         stage('Deploy to ArgoCD') {
             steps {
                 // Use ArgoCD CLI or API to trigger the deployment
-                sh 'argocd app sync <application-name> --namespace <namespace>'
+                sh 'argocd app sync ${DOCKER_IMAGE} --namespace default'
             }
-        }
-    }
+         }
+     }
+  }     
+} 
 }
-
-
-
-
-                
-            }
-
-
-
-            
-        }
     
 
