@@ -22,8 +22,13 @@ $ sudo docker pull smitwaman/task-management-system:v1
 
 $ sudo docker run -d -p 8080:80 task-management-system:v1         
 
+![docker o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/docker.png)
+
+
+
+
 // you can use any free port instead of 8080
 
 Browse html using http://localhost:8080
-
+![docker o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/browser.png)
 
