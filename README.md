@@ -9,7 +9,7 @@ Any commit in scm will make webhook to trigger pipeline.
 Github-Git-Jenkins-Maven-Docker-Dockerhub
 
 # PUSH based approach 
-
+![Pipeline stages o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/ci.png)
 
 
 
@@ -30,5 +30,5 @@ $ sudo docker run -d -p 8080:80 task-management-system:v1
 // you can use any free port instead of 8080
 
 Browse html using http://localhost:8080
-![docker o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/browser.png)
+![Browser o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/browser.png)
 
