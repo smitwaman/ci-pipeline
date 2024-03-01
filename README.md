@@ -9,7 +9,7 @@ Any commit in scm will make webhook to trigger pipeline.
 Github-Git-Jenkins-Maven-Docker-Dockerhub
 
 # PUSH based approach 
-![Pipeline stages o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/ci.png)
+![Pipeline stages o/p](https://github.com/smitwaman/ci-pipeline/blob/main/image/ci.jpg)
 
 
 
